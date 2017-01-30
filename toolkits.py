@@ -27,39 +27,3 @@ def get_html(url):
         return None
     else:
         return html
-
-if __name__ == '__main__':
-    html = get_html('http://www.pythonscraping.com/pages/warandpeace.html') 
-    #get elements
-    try:  
-        # html is found
-        soup = BeautifulSoup(html.read(),'lxml')
-        spans = soup.find_all('span', {'class': re.compile(r'green')})
-    except AttributeError:
-        print('html or tag is not found.')
-    
-    #use elements
-    for span in spans:
-        print(span.get_text())
-    """    
-    #get elements from multiple tags, or classes
-    headers = soup.find_all({'h1','h2'})
-    
-    # get children of the elements
-    html = urlopen("http://www.pythonscraping.com/pages/page3.html")
-    soup = BeautifulSoup(html)
-    soup.find("table",{"id":"giftList"}).children
-              
-    # get next_sibling/next_siblings/previous_sibling/previous_siblings
-    soup.find("table",{"id":"giftList"}).tr.next_siblings
-    
-    # get parent
-    soup.find("img",{"src":"../img/gifts/img1.jpg"}).parent.previous_sibling
-    
-    # get attributes
-    tag = soup.find("img",{"src":"../img/gifts/img1.jpg"})
-    tag.attrs
-    
-    # using lambda to filter tag
-    soup.findAll(lambda tag: len(tag.attrs) == 2)
-    """
